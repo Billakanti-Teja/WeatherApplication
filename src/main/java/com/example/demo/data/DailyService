@@ -1,0 +1,21 @@
+package com.example.weather.data;
+
+import javax.persistence.*;
+
+@Entity
+@Getters
+@Setters
+@data
+@Table(name = "daily_summary")
+public class DailySummary {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String date;
+    private double avgTemp;
+    private double maxTemp;
+    private double minTemp;
+    private String dominantCondition;
+
+}
