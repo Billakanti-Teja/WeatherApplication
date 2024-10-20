@@ -16,11 +16,11 @@ Visualization: Displays weather summaries, trends, and alerts.
 -Data timestamp 
 
 #Prerequisites (Tech stack){
-Java JDK 
+Java (JDK version 17 or more).
 MySQL: For storing weather data and summaries.
 Maven: For managing dependencies.
 OpenWeatherMap API Key: https://openweathermap.org/api. Sign up for free api key.
-Spring boot.
+Spring boot framework.
 
 #Setup Instructions:
 -Obtain OpenWeatherMap API Key.
