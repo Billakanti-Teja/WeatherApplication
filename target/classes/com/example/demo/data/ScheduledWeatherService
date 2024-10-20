@@ -1,0 +1,17 @@
+package com.example.weather.data;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ScheduledWeatherService {
+
+    @Autowired
+    private WeatherService weatherService;
+
+    @Scheduled(fixedRate = 3600000) // Every hour
+    public void scheduleWeatherDataFetch() {
+        weatherService.fetchAndSaveWeatherData(city); // Replace with the desired city
+    }
+}

@@ -1,0 +1,27 @@
+package com.example.weather.controller;
+
+import com.example.weather.data.WeatherService;
+import com.fasterxml.jackson.databind.JsonNode;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class WeatherController {
+
+    @Autowired
+    private WeatherService weatherService;
+
+    @GetMapping("/weather")
+    public JsonNode getWeather(@RequestParam String city) {
+        return weatherService.fetchWeatherData(city);
+    }
+
+    @PostMapping("/weather/summary")
+public ResponseEntity<String> addWeatherSummary(@RequestBody DailySummary summary) {
+    weatherRepository.save(summary);
+    return ResponseEntity.ok("Weather summary added successfully!");
+}
+
+}

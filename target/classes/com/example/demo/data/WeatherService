@@ -1,0 +1,37 @@
+@Service
+public class WeatherService {
+
+    @Autowired
+    private AppConfig appConfig;
+
+    @Autowired
+    private WeatherRepository weatherRepository;
+
+    private RestTemplate restTemplate = new RestTemplate();
+
+    public void fetchAndSaveWeatherData(String city) {
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + appConfig.getApiKey();
+        JsonNode response = restTemplate.getForObject(url, JsonNode.class);
+
+        // Log the response
+        System.out.println("API Response: " + response);
+
+        if (response != null && response.has("main")) {
+            JsonNode main = response.get("main");
+            DailySummary dailySummary = new DailySummary();
+            dailySummary.setDate(java.time.LocalDate.now().toString());
+            dailySummary.setAvgTemp(main.get("temp").asDouble());
+            dailySummary.setMaxTemp(main.get("temp_max").asDouble());
+            dailySummary.setMinTemp(main.get("temp_min").asDouble());
+            dailySummary.setDominantCondition(response.get("weather").get(0).get("description").asText());
+
+            // Log the DailySummary object before saving
+            System.out.println("Saving Weather Data: " + dailySummary);
+
+            weatherRepository.save(dailySummary); // Save to database
+            System.out.println("Weather data saved: " + dailySummary);
+        } else {
+            System.out.println("No weather data found.");
+        }
+    }
+}

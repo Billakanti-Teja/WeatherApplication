@@ -1,0 +1,13 @@
+package com.example.weather.data;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class WeatherProcessor {
+
+    public double convertKelvinToCelsius(double tempKelvin) {
+        return tempKelvin - 273.15;
+    }
+
+    // Add any additional logic for processing weather data here
+}
