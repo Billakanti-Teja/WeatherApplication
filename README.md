@@ -34,3 +34,7 @@ Update the database configuration (username, password, etc.) in application.prop
 
 4.**Configure Cities and Thresholds**:<br>
 Set the desired cities and alert thresholds in the configuration file.
+
+5.**Run the Application**:
+```bash
+mvn spring-boot:run
